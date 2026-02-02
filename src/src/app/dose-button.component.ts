@@ -19,11 +19,11 @@ import { PraiseService } from './praise.service';
             <p class="text-4xl font-bold text-center leading-relaxed">{{ message }}</p>
           </mat-card-content>
           <mat-card-actions class="flex justify-center gap-6 pb-4">
-            <button mat-stroked-button class="text-lg px-8 py-4" (click)="reset()">戻る</button>
             <button mat-flat-button color="accent" class="text-lg px-8 py-4" (click)="shareOnX()">
               <mat-icon class="scale-125 mr-2">share</mat-icon>
               Xで報告する
             </button>
+            <button mat-stroked-button class="text-lg px-8 py-4" (click)="reset()">戻る</button>
           </mat-card-actions>
         </mat-card>
       } @else {
