@@ -5,6 +5,9 @@ import { DoseButtonComponent } from './dose-button.component';
 
 @Component({
   selector: 'app-root',
+  host: {
+    class: 'flex flex-col min-h-screen',
+  },
   imports: [RouterOutlet, DoseButtonComponent, MatToolbarModule],
   template: `
     <mat-toolbar class="!bg-green-100 !h-28 flex justify-center">
@@ -44,15 +47,7 @@ import { DoseButtonComponent } from './dose-button.component';
       <p class="text-xs opacity-60">&copy; 2026 neko3cs</p>
     </footer>
   `,
-  styles: [
-    `
-      :host {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-    `,
-  ],
+  styles: [],
 })
 export class App {
   protected readonly title = signal('お薬飲んだボタン');
