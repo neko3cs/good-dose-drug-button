@@ -53,13 +53,13 @@ export class DoseButtonComponent {
 
   readonly shareUrl = computed(() => {
     const baseUrl = 'https://twitter.com/intent/tweet';
-    const text = 'お薬を飲みました。えらい！';
-    const hashtags = '#お薬飲んだボタン #健康第一';
-    const url = window.location.origin + window.location.pathname;
-    
-    const fullText = `${text}\n${url}\n${hashtags}`;
-    
-    return `${baseUrl}?text=${encodeURIComponent(fullText)}`;
+    const params = new URLSearchParams({
+      text: 'お薬を飲みました。えらい！',
+      url: window.location.origin + window.location.pathname,
+      hashtags: 'お薬飲んだボタン,健康第一'
+    });
+
+    return `${baseUrl}?${params.toString()}`;
   });
 
   takeDose(): void {
