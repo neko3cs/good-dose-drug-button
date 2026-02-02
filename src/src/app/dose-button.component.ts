@@ -24,8 +24,6 @@ import { PraiseService } from './praise.service';
               color="accent"
               class="text-lg px-8 py-4 flex items-center"
               [href]="shareUrl()"
-              target="_blank"
-              rel="noopener noreferrer"
             >
               <mat-icon class="scale-125 mr-2">share</mat-icon>
               Xで報告する
@@ -54,12 +52,11 @@ export class DoseButtonComponent {
   readonly praise = signal<string | null>(null);
 
   readonly shareUrl = computed(() => {
-    const baseUrl = 'https://x.com/intent/post';
+    const baseUrl = 'https://twitter.com/intent/tweet';
     const text = 'お薬を飲みました。えらい！';
     const hashtags = '#お薬飲んだボタン #健康第一';
     const url = window.location.origin + window.location.pathname;
     
-    // 全て text パラメータに含める手法（モバイルアプリでの確実性が高い）
     const fullText = `${text}\n${url}\n${hashtags}`;
     
     return `${baseUrl}?text=${encodeURIComponent(fullText)}`;
