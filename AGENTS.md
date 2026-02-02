@@ -154,6 +154,11 @@ export class DoseButtonComponent {
 - **Language**: All interactions with the user MUST be in **Japanese**.
 - **Code Comments**: Keep code comments and internal documentation in English to maintain standard coding practices, unless explicitly requested otherwise.
 
+### 4.4 Git Operations
+
+- **Commit**: NEVER create a git commit unless explicitly requested by the user.
+- **Push**: NEVER push to a remote repository unless explicitly requested by the user.
+
 ## 5. Directory Structure Reference
 
 ```txt
