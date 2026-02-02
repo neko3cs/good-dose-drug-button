@@ -148,6 +148,9 @@ export class DoseButtonComponent {
 
 - Do not create files outside of `src/` (the inner src).
 - Do not modify configuration files (`angular.json`, `tsconfig.json`) unless explicitly requested.
+- **Release Guidelines**: When building and deploying to the `docs/` directory:
+  - ALWAYS delete old bundle files (`chunk-*.js`, `main-*.js`, `styles-*.css`) before placing new ones to avoid accumulation of unused artifacts.
+  - Verify that only the files explicitly referenced in the new `index.html` and `404.html` remain in the directory.
 
 ### 4.3 Communication
 
