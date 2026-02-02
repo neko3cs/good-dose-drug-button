@@ -24,7 +24,7 @@ describe('DoseButtonComponent', () => {
     const fixture = TestBed.createComponent(DoseButtonComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.main-button')?.textContent).toContain('お薬を飲みました！');
+    expect(compiled.textContent).toContain('お薬を飲みました！');
   });
 
   it('should show praise message after clicking takeDose', () => {
@@ -35,7 +35,7 @@ describe('DoseButtonComponent', () => {
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.praise-message')).toBeTruthy();
+    expect(compiled.textContent).toContain(component.praise()!);
     expect(component.praise()).not.toBeNull();
   });
 
@@ -50,7 +50,7 @@ describe('DoseButtonComponent', () => {
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.main-button')).toBeTruthy();
+    expect(compiled.textContent).toContain('お薬を飲みました！');
     expect(component.praise()).toBeNull();
   });
 });

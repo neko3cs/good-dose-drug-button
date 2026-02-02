@@ -5,81 +5,36 @@ import { PraiseService } from './praise.service';
   selector: 'app-dose-button',
   standalone: true,
   template: `
-    <div class="dose-container">
+    <div class="flex flex-col items-center justify-center p-8 gap-4">
       @if (praise(); as message) {
-        <div class="praise-area">
-          <p class="praise-message">{{ message }}</p>
-          <div class="action-buttons">
-            <button class="share-button" (click)="shareOnX()">Xで報告する 🚀</button>
-            <button class="reset-button" (click)="reset()">戻る</button>
+        <div class="text-center transition-all duration-500">
+          <p class="text-3xl font-bold text-green-600 mb-6">{{ message }}</p>
+          <div class="flex gap-4 justify-center">
+            <button 
+              class="px-6 py-3 bg-black text-white rounded-md cursor-pointer hover:bg-gray-800 transition-colors" 
+              (click)="shareOnX()"
+            >
+              Xで報告する 🚀
+            </button>
+            <button 
+              class="px-6 py-3 bg-gray-500 text-white rounded-md cursor-pointer hover:bg-gray-600 transition-colors" 
+              (click)="reset()"
+            >
+              戻る
+            </button>
           </div>
         </div>
       } @else {
-        <button class="main-button" (click)="takeDose()">
+        <button 
+          class="text-2xl px-8 py-4 bg-blue-600 text-white rounded-full shadow-lg cursor-pointer hover:scale-105 transition-transform" 
+          (click)="takeDose()"
+        >
           お薬を飲みました！ 💊
         </button>
       }
     </div>
   `,
-  styles: `
-    .dose-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      gap: 1rem;
-    }
-    .main-button {
-      font-size: 1.5rem;
-      padding: 1rem 2rem;
-      cursor: pointer;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 50px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
-    }
-    .main-button:hover {
-      transform: scale(1.05);
-    }
-    .praise-area {
-      text-align: center;
-      animation: fadeIn 0.5s ease-in;
-    }
-    .praise-message {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #28a745;
-      margin-bottom: 1.5rem;
-    }
-    .action-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-    }
-    .share-button {
-      padding: 0.8rem 1.5rem;
-      background-color: #000;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .reset-button {
-      padding: 0.8rem 1.5rem;
-      background-color: #6c757d;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  `,
+  styles: [],
 })
 export class DoseButtonComponent {
   private readonly praiseService = inject(PraiseService);
