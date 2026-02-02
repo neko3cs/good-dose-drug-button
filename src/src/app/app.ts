@@ -1,16 +1,35 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { DoseButtonComponent } from './dose-button.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, DoseButtonComponent],
   template: `
-    <h1>Hello, {{ title() }}</h1>
+    <main class="app-container">
+      <header>
+        <h1>{{ title() }}</h1>
+      </header>
+      
+      <app-dose-button />
 
-    <router-outlet />
+      <router-outlet />
+    </main>
   `,
-  styles: [],
+  styles: `
+    .app-container {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 2rem;
+      font-family: sans-serif;
+    }
+    header h1 {
+      color: #333;
+      margin-bottom: 2rem;
+    }
+  `,
 })
 export class App {
-  protected readonly title = signal('good-dose-drug-button');
+  protected readonly title = signal('Good Dose Drug Button');
 }
