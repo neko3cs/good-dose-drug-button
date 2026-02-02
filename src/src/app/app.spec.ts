@@ -18,6 +18,6 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.textContent).toContain('Good Dose Drug Button');
+    expect(compiled.textContent).toContain('お薬飲んだボタン');
   });
 });

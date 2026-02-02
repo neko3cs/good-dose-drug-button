@@ -7,8 +7,9 @@ import { DoseButtonComponent } from './dose-button.component';
   selector: 'app-root',
   imports: [RouterOutlet, DoseButtonComponent, MatToolbarModule],
   template: `
-    <mat-toolbar class="flex justify-center !bg-green-100 !h-16">
+    <mat-toolbar class="flex flex-col justify-center !bg-green-100 !h-24">
       <span class="text-3xl font-black text-green-800 tracking-wider">{{ title() }}</span>
+      <span class="text-sm font-medium text-green-700 mt-1">お薬飲んだら褒めてもらえます</span>
     </mat-toolbar>
     <main class="max-w-3xl mx-auto text-center p-12 font-sans">
       <app-dose-button />
@@ -18,5 +19,5 @@ import { DoseButtonComponent } from './dose-button.component';
   styles: [],
 })
 export class App {
-  protected readonly title = signal('Good Dose Drug Button');
+  protected readonly title = signal('お薬飲んだボタン');
 }
