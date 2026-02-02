@@ -148,6 +148,11 @@ export class DoseButtonComponent {
 - Do not create files outside of `src/` (the inner src).
 - Do not modify configuration files (`angular.json`, `tsconfig.json`) unless explicitly requested.
 
+### 4.3 Communication
+
+- **Language**: All interactions with the user MUST be in **Japanese**.
+- **Code Comments**: Keep code comments and internal documentation in English to maintain standard coding practices, unless explicitly requested otherwise.
+
 ## 5. Directory Structure Reference
 
 ```txt
