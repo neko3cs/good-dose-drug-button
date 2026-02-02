@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { DoseButtonComponent } from './dose-button.component';
-import { PraiseService } from './praise.service';
+import { PraiseService } from '../../services/praise.service';
 
 describe('DoseButtonComponent', () => {
   let praiseService: PraiseService;

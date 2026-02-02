@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { DoseButtonComponent } from './dose-button.component';
-import { HeaderComponent } from './header.component';
-import { FooterComponent } from './footer.component';
+import { DoseButtonComponent } from './components/dose-button/dose-button.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
