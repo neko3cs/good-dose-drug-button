@@ -1,68 +1,170 @@
 # AGENTS.md
 
-このファイルは、AIエージェントがこのプロジェクト（Good Dose Drug Button）を操作・開発する際のガイドラインとルールをまとめたものです。
+This file defines the guidelines, conventions, and operational rules for AI agents (and human developers) working on the **Good Dose Drug Button** project.
 
-## 1. プロジェクト概要
+## 1. Project Overview
 
-- **名前**: Good Dose Drug Button (お薬飲めてえらいボタン）
-- **目的**:
-  - ユーザーが薬を飲めた時にボタンを押す
-  - ユーザーが薬を飲めたことを褒める
-  - X(旧Twitter)に共有・投稿する
-- **構造**: リポジトリルートにはドキュメント類のみがあり、実際のアプリケーションプロジェクトは `src/` ディレクトリ以下に配置されています。
+- **Name**: Good Dose Drug Button
+- **Purpose**: A web application to celebrate taking medication.
+  - Users press a button when they take their meds.
+  - The app provides positive reinforcement (praise).
+  - Allows sharing the achievement on X (formerly Twitter).
+- **Structure**:
+  - The repository root contains documentation.
+  - The actual Angular application lives strictly within the `src/` directory.
 
-## 2. 技術スタック
+## 2. Environment & Commands
 
-- **Framework**: Angular v21+
-  - Standalone Componentsを使用。
-  - Signalsを積極的に活用し、モダンなAngular開発スタイルを維持すること。
-- **Language**: TypeScript v5.9+
-- **Package Manager**: pnpm v10+
-- **Testing**: Vitest
-- **Formatter**: Prettier (設定は `src/package.json` に記述あり）
+### 2.1 Critical Path
 
-## 3. 作業ルール (Core Mandates)
+**IMPORTANT**: The root of the Angular project is the `src/` directory, NOT the repository root.
+All `pnpm`, `ng`, and `node` commands **MUST** be executed with `src/` as the working directory.
 
-### 3.1 ワーキングディレクトリ
+### 2.2 Build & Test Commands
 
-**最重要**: `package.json` や `angular.json` は `src/` ディレクトリ内に存在します。
-したがって、`pnpm` コマンドや `ng` コマンド、ファイル操作を行う際は、基本的に `src/` ディレクトリを起点（ワーキングディレクトリ）として動作してください。
+Run the following commands inside the `src/` directory:
 
-### 3.2 コーディング規約
+| Action            | Command                                            | Description                    |
+| ----------------- | -------------------------------------------------- | ------------------------------ |
+| **Install**       | `pnpm install`                                     | Install dependencies.          |
+| **Start**         | `pnpm start`                                       | Start dev server on port 4200. |
+| **Build**         | `pnpm build`                                       | Build for production.          |
+| **Test (All)**    | `pnpm test`                                        | Run all unit tests via Vitest. |
+| **Test (Single)** | `ng test --include "src/app/path/to/file.spec.ts"` | Run tests for a specific file. |
+| **Lint/Format**   | `npx prettier --write .`                           | Format code using Prettier.    |
 
-- **フォーマット**: `src/package.json` 内の `prettier` 設定にしたがってください。
-  - `printWidth: 100`
-  - `singleQuote: true`
-- **Angular**:
-  - 最新のAngular機能（Signals, Control Flow Syntax `@if`, `@for` 等）を使用してください。
-  - モジュール（NgModule）ではなく、Standalone Componentベースで開発してください。
+> **Note**: If `ng test` fails with schema errors, ensure you are not passing unsupported arguments. Use `--include` for filtering.
 
-### 3.3 コミットと変更
+## 3. Code Style & Guidelines
 
-- 変更を行う際は、既存のコードスタイル（命名規則、ファイル構造）を尊重してください。
-- 機能追加・修正後は `pnpm test` を実行し、既存のテストが壊れていないか確認してください。
+Adhere strictly to these conventions to maintain codebase consistency.
 
-## 4. 開発コマンド
+### 3.1 Angular Architecture
 
-（すべて `src/` ディレクトリ内で実行）
+- **Framework Version**: Angular v21+
+- **Standalone Components**:
+  - **MANDATORY**: Use `standalone: true` for all components, directives, and pipes.
+  - **FORBIDDEN**: Do NOT create `NgModule`s.
+  - Import dependencies directly in the `imports` array of the component decorator.
+- **Signals**:
+  - Use Angular Signals for all local and shared state.
+  - Prefer `computed()` over getters for derived state.
+  - Prefer `effect()` for side effects over `ngOnChanges`.
+  - Avoid `RxJS` streams for simple synchronous state; reserve Observables for complex async flows (HTTP, events).
+- **Control Flow**:
+  - Use the built-in control flow syntax: `@if`, `@for`, `@switch`.
+  - Do NOT use `*ngIf`, `*ngFor`, `*ngSwitch`.
 
-- **セットアップ**: `pnpm install`
-- **開発サーバー**: `pnpm start` (デフォルトポート: 4200)
-- **ビルド**: `pnpm build`
-- **テスト**: `pnpm test`
+### 3.2 Dependency Injection
 
-## 5. ディレクトリ構造の注意点
+- Use the `inject()` function for dependency injection.
+- Avoid constructor-based injection to keep classes cleaner.
+
+```typescript
+// ✅ Good
+private readonly http = inject(HttpClient);
+
+// ❌ Avoid
+constructor(private http: HttpClient) {}
+```
+
+### 3.3 TypeScript & Formatting
+
+- **Strict Typing**:
+  - Strict mode is enabled.
+  - Do NOT use `any`. Define interfaces or types for all data structures.
+  - Return types for functions are recommended but not strictly enforced if inferred correctly.
+- **Formatting (Prettier)**:
+  - `printWidth`: 100
+  - `singleQuote`: true
+  - Ensure your generated code matches these settings.
+- **Naming Conventions**:
+  - **Files**: `kebab-case` (e.g., `medication-log.component.ts`)
+  - **Classes**: `PascalCase` (e.g., `MedicationLogComponent`)
+  - **Methods/Vars**: `camelCase` (e.g., `logDose`)
+  - **Constants**: `UPPER_SNAKE_CASE` (e.g., `MAX_DAILY_DOSES`)
+
+### 3.4 Error Handling
+
+- Use `try-catch` blocks for async/await operations.
+- For HTTP errors, use global error handling or service-level catching/re-throwing with meaningful messages.
+- Do not swallow errors silently. Log them or display user feedback.
+
+### 3.5 Example Component
+
+Follow this template for new components:
+
+```typescript
+import { Component, signal, inject } from "@angular/core";
+import { CommonModule } from "@angular/common";
+
+@Component({
+  selector: "app-dose-button",
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="container">
+      @if (hasTaken()) {
+        <p>Great job taking your meds!</p>
+      } @else {
+        <button (click)="takeDose()">Take Medicine</button>
+      }
+    </div>
+  `,
+  styles: [
+    `
+      .container {
+        padding: 1rem;
+      }
+    `,
+  ],
+})
+export class DoseButtonComponent {
+  // State
+  readonly hasTaken = signal(false);
+
+  // Actions
+  takeDose(): void {
+    this.hasTaken.set(true);
+    // TODO: logic to share on X
+  }
+}
+```
+
+## 4. Operational Rules for Agents
+
+### 4.1 Development Workflow
+
+1. **Analyze**: Read existing code (`src/app/`) to understand context.
+2. **Verify**: Check `package.json` in `src/` for dependencies.
+3. **Implement**: Write code following the styles above.
+4. **Test**:
+   - Always create or update `*.spec.ts` files for new logic.
+   - Run `ng test --include "..."` to verify your specific changes.
+   - Run `pnpm test` to ensure no regressions.
+
+### 4.2 File System Constraints
+
+- Do not create files outside of `src/` (the inner src).
+- Do not modify configuration files (`angular.json`, `tsconfig.json`) unless explicitly requested.
+
+## 5. Directory Structure Reference
 
 ```txt
 .
-├── AGENTS.md          # このファイル
-├── README.md          # プロジェクトの簡易説明
-└── src/               # 【重要】ここがAngularプロジェクトのルート
+├── AGENTS.md          # This file
+├── README.md          # Project documentation
+└── src/               # WORKDIR ROOT
     ├── angular.json
     ├── package.json
     ├── pnpm-lock.yaml
-    └── src/           # ソースコード実体
-        ├── app/
-        ├── assets/
-        └── index.html
+    └── src/           # Application Source
+        ├── app/       # Components & Logic
+        ├── assets/    # Static files
+        ├── styles.css # Global styles
+        └── main.ts    # Entry point
 ```
+
+---
+
+_Generated for AI Agents interacting with the Good Dose Drug Button repository._
