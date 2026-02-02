@@ -56,7 +56,7 @@ export class DoseButtonComponent {
     const params = new URLSearchParams({
       text: 'お薬を飲みました。えらい！',
       url: window.location.origin + window.location.pathname,
-      hashtags: 'お薬飲んだボタン,健康第一'
+      hashtags: 'お薬飲んだボタン,健康第一',
     });
 
     return `${baseUrl}?${params.toString()}`;
