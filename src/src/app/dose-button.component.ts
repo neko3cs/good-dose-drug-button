@@ -1,35 +1,41 @@
-import { Component, signal, inject, computed } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { PraiseService } from './praise.service';
 
 @Component({
   selector: 'app-dose-button',
   standalone: true,
+  imports: [MatButtonModule, MatCardModule, MatIconModule],
   template: `
     <div class="flex flex-col items-center justify-center p-8 gap-4">
       @if (praise(); as message) {
-        <div class="text-center transition-all duration-500">
-          <p class="text-3xl font-bold text-green-600 mb-6">{{ message }}</p>
-          <div class="flex gap-4 justify-center">
-            <button 
-              class="px-6 py-3 bg-black text-white rounded-md cursor-pointer hover:bg-gray-800 transition-colors" 
-              (click)="shareOnX()"
-            >
-              Xで報告する 🚀
+        <mat-card class="max-w-2xl w-full animate-in fade-in slide-in-from-bottom-2 duration-500">
+          <mat-card-header class="flex justify-center pb-4">
+            <mat-card-title class="text-3xl text-green-600">えらい！</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="py-10">
+            <p class="text-4xl font-bold text-center leading-relaxed">{{ message }}</p>
+          </mat-card-content>
+          <mat-card-actions class="flex justify-center gap-6 pb-4">
+            <button mat-stroked-button class="text-lg px-8 py-4" (click)="reset()">戻る</button>
+            <button mat-flat-button color="accent" class="text-lg px-8 py-4" (click)="shareOnX()">
+              <mat-icon class="scale-125 mr-2">share</mat-icon>
+              Xで報告する
             </button>
-            <button 
-              class="px-6 py-3 bg-gray-500 text-white rounded-md cursor-pointer hover:bg-gray-600 transition-colors" 
-              (click)="reset()"
-            >
-              戻る
-            </button>
-          </div>
-        </div>
+          </mat-card-actions>
+        </mat-card>
       } @else {
-        <button 
-          class="text-2xl px-8 py-4 bg-blue-600 text-white rounded-full shadow-lg cursor-pointer hover:scale-105 transition-transform" 
+        <button
+          mat-fab
+          extended
+          color="primary"
+          class="text-4xl px-32 py-16 hover:scale-105 transition-transform shadow-2xl !rounded-full whitespace-nowrap"
           (click)="takeDose()"
         >
-          お薬を飲みました！ 💊
+          <mat-icon class="scale-[2] mr-10">medication</mat-icon>
+          お薬を飲みました！
         </button>
       }
     </div>
