@@ -48,6 +48,7 @@ Adhere strictly to these conventions to maintain codebase consistency.
   - Import dependencies directly in the `imports` array of the component decorator.
 - **Signals**:
   - Use Angular Signals for all local and shared state.
+  - Services should be stateless whenever possible; prefer components holding state and services providing pure logic or data fetching.
   - Prefer `computed()` over getters for derived state.
   - Prefer `effect()` for side effects over `ngOnChanges`.
   - Avoid `RxJS` streams for simple synchronous state; reserve Observables for complex async flows (HTTP, events).
