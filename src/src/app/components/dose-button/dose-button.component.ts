@@ -2,7 +2,7 @@ import { Component, signal, inject, computed } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { PraiseService } from './praise.service';
+import { PraiseService } from '../../services/praise.service';
 
 @Component({
   selector: 'app-dose-button',
