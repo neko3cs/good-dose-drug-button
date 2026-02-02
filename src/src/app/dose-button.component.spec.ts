@@ -30,7 +30,7 @@ describe('DoseButtonComponent', () => {
   it('should show praise message after clicking takeDose', () => {
     const fixture = TestBed.createComponent(DoseButtonComponent);
     const component = fixture.componentInstance;
-    
+
     component.takeDose();
     fixture.detectChanges();
 
@@ -42,10 +42,10 @@ describe('DoseButtonComponent', () => {
   it('should reset when reset button is clicked', () => {
     const fixture = TestBed.createComponent(DoseButtonComponent);
     const component = fixture.componentInstance;
-    
+
     component.takeDose();
     fixture.detectChanges();
-    
+
     component.reset();
     fixture.detectChanges();
 
