@@ -6,9 +6,9 @@ import { DoseButtonComponent } from './dose-button.component';
   selector: 'app-root',
   imports: [RouterOutlet, DoseButtonComponent],
   template: `
-    <main class="app-container">
-      <header>
-        <h1>{{ title() }}</h1>
+    <main class="max-w-2xl mx-auto text-center p-8 font-sans">
+      <header class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-800">{{ title() }}</h1>
       </header>
       
       <app-dose-button />
@@ -16,19 +16,7 @@ import { DoseButtonComponent } from './dose-button.component';
       <router-outlet />
     </main>
   `,
-  styles: `
-    .app-container {
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 2rem;
-      font-family: sans-serif;
-    }
-    header h1 {
-      color: #333;
-      margin-bottom: 2rem;
-    }
-  `,
+  styles: [],
 })
 export class App {
   protected readonly title = signal('Good Dose Drug Button');
