@@ -61,7 +61,7 @@ export class DoseButtonComponent {
 
     params.append('text', 'お薬を飲みました。えらい！');
     params.append('hashtags', ['お薬飲んだボタン', '健康第一'].join(','));
-    params.append('url', window.location.origin);
+    params.append('url', window.location.origin + window.location.pathname);
 
     const xUrl = `${baseUrl}?${params.toString()}`;
     window.open(xUrl, '_blank', 'noreferrer');
