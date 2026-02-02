@@ -1,18 +1,17 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { DoseButtonComponent } from './dose-button.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, DoseButtonComponent],
+  imports: [RouterOutlet, DoseButtonComponent, MatToolbarModule],
   template: `
-    <main class="max-w-2xl mx-auto text-center p-8 font-sans">
-      <header class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-800">{{ title() }}</h1>
-      </header>
-      
+    <mat-toolbar class="flex justify-center !bg-green-100 !h-16">
+      <span class="text-3xl font-black text-green-800 tracking-wider">{{ title() }}</span>
+    </mat-toolbar>
+    <main class="max-w-3xl mx-auto text-center p-12 font-sans">
       <app-dose-button />
-
       <router-outlet />
     </main>
   `,
