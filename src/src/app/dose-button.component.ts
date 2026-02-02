@@ -50,13 +50,10 @@ export class DoseButtonComponent {
   }
 
   shareOnX(): void {
-    const message = this.praise();
-    if (!message) return;
-
     const baseUrl = 'https://x.com/intent/post';
     const params = new URLSearchParams();
 
-    params.append('text', message);
+    params.append('text', 'お薬を飲みました。えらい！');
     params.append('hashtags', ['お薬飲んだボタン', '健康第一'].join(','));
     params.append('url', window.location.origin);
 
