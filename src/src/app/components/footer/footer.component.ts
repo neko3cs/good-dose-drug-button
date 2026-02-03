@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
         >
           <span
             class="font-medium underline underline-offset-4 decoration-green-200 hover:decoration-green-400"
-            >このアプリのGitHubリポジトリ</span
+            >GitHub Repos</span
           >
         </a>
         <span class="text-green-200" aria-hidden="true">/</span>
@@ -21,7 +21,7 @@ import { Component } from '@angular/core';
         >
           <span
             class="font-medium underline underline-offset-4 decoration-green-200 hover:decoration-green-400"
-            >開発者のTwitterアカウント</span
+            >開発者(X)</span
           >
         </a>
       </div>
