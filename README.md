@@ -10,7 +10,7 @@
 
 ## 🔗 アクセス URL
 
-[https://neko3cs.github.io/good-dose-drug-button/](https://neko3cs.github.io/good-dose-drug-button/)
+[**💊お薬飲んだボタン - GitHub Pages**](https://neko3cs.github.io/good-dose-drug-button/)
 
 ## 🛠 テックスタック
 
@@ -19,6 +19,6 @@
 - **Styling**: Tailwind CSS
 - **Deployment**: GitHub Pages (docsフォルダー)
 
-## 開発者向け
+---
 
-ソースコードは `src/` ディレクトリにあります。詳細は `src/README.md` または `AGENTS.md` を参照してください。
+© 2026 neko3cs
