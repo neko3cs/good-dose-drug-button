@@ -19,6 +19,10 @@
 - **Styling**: Tailwind CSS
 - **Deployment**: GitHub Pages (docsフォルダー)
 
+## Please Buy Me A Coffee!
+
+[Buy Me A Coffee - neko3cs](https://buymeacoffee.com/neko3cs)
+
 ---
 
 © 2026 neko3cs
